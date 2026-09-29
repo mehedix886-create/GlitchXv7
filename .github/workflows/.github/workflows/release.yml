@@ -1,0 +1,35 @@
+name: Auto Release
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v1.0
+          name: GlitchX Mod Pack v7.0
+          body: |
+            🎉 GlitchX Vip Proxy — Mod Pack v1.0
+            Free Fire proxy mod pack
+            
+            📦 Download: GlitchX.Vip.Proxy.zip
+            
+            ✅ Direct download link
+            ✅ No bot-block
+            ✅ Fast CDN
+          files: GlitchX.Vip.Proxy.zip
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
